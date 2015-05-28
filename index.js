@@ -1,13 +1,22 @@
-var express = require('express');
-var app = express();
+var fs = require('fs');
+var restify = require('restify');
+var server = restify.createServer();
 
-app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/public'));
+server.get(/.*/, restify.serveStatic({
+  directory: __dirname,
+  default: 'index.html'
+}));
 
-app.get('/', function(request, response) {
-  response.send('Hello World!');
+server.get('/', function(req, res, done){
+  fs.readFile('index.html', 'utf8', function(err, html){
+    if(err) throw err;
+    res.setHeader('Content-type', 'text/html');
+    res.write(html);
+    res.end();
+    return done();
+  });
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+server.listen(process.env.PORT || 8000, function(){
+  console.log('Listening at ' + server.url);
 });
