@@ -1,0 +1,21 @@
+{
+  "name": "dilus",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/manufacturedba/dilus",
+  "authors": [
+    "manufacturedba <manufacturedba@gmail.com>"
+  ],
+  "description": "For forever",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "FlipClock": "~0.7.7"
+  }
+}
